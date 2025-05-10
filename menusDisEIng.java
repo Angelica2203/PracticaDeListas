@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class menusDisEIng 
 {
-    public LinkedList<objEst_Ingenieria> menuIngenieria(LinkedList<objEst_Ingenieria> lisIng, Scanner sc) 
+    public LinkedList<objEst_Ingenieria> menuIngenieria(LinkedList<objEst_Ingenieria> lisIng) 
     {
         boolean bandera = true;
         String rpta = "";
@@ -54,7 +54,7 @@ public class menusDisEIng
         }
         return lisIng;
     }
-    public LinkedList<objEst_Diseño> menuDiseño(LinkedList<objEst_Diseño> lisDis, Scanner sc) 
+    public LinkedList<objEst_Diseño> menuDiseño(LinkedList<objEst_Diseño> lisDis) 
     {
         boolean bandera = true;
         String rpta = "";

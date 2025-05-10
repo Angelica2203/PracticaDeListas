@@ -11,7 +11,7 @@ public class principal
         do 
         {
             input = JOptionPane.showInputDialog("------ BIENVENIDO ------\n" +
-                                                "1.Estudiante de Ingeneria \n" +
+                                                "1.Estudiante de Ingenieria \n" +
                                                 "2.Estudiante de Diseño\n" +
                                                 "3.Imprimir Inventario Total\n" +
                                                 "4.Salir");
@@ -38,7 +38,7 @@ public class principal
     }
     public static void main(String[] args) 
     {
-        LinkedList<objEst_Ingeneria> ingeneria = new LinkedList<>();
+        LinkedList<objEst_Ingenieria> ingeneria = new LinkedList<>();
         LinkedList<objEst_Diseño> diseño = new LinkedList<>();
         int opc;
         do 
@@ -49,7 +49,7 @@ public class principal
             switch (opc) 
             {
                 case 1:
-                    ingeneria = menus.menuIngeneria(ingeneria);
+                    ingeneria = menus.menuIngenieria(ingeneria);
                     break;
                 case 2:
                     diseño = menus.menuDiseño(diseño);
