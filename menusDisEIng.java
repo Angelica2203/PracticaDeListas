@@ -58,7 +58,7 @@ public class menusDisEIng
     {
         boolean bandera = true;
         String rpta = "";
-        //metodos m = new metodos();
+        metodo m = new metodo();
         int opt = 0;
         while (bandera) 
         {
@@ -83,7 +83,7 @@ public class menusDisEIng
             switch (opt) 
             {
                 case 1:
-                    //lisIng = m.IngresarComputador(c);
+                    lisDis = m.IngresarEstDiseño(lisDis);
                     break;
                 case 2:
                    // c = m.PrestarComputador(c);
