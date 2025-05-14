@@ -14,11 +14,13 @@ public class principal
                                                 "1.Estudiante de Ingenieria \n" +
                                                 "2.Estudiante de Diseño\n" +
                                                 "3.Imprimir Inventario Total\n" +
-                                                "4.Salir");
+                                                "4.Registrar Computador\n" +
+                                                "5.Registrar Tablet\n" +
+                                                "6.Salir");
             if (input != null && input.matches("\\d+")) 
             {
                 vrUsu = Integer.parseInt(input);
-                if (vrUsu >= 1 && vrUsu <= 4) 
+                if (vrUsu >= 1 && vrUsu <= 6) 
                 {
                     validInput = true;
                 } 
@@ -40,25 +42,43 @@ public class principal
     {
         LinkedList<objEst_Ingenieria> ingeneria = new LinkedList<>();
         LinkedList<objEst_Diseño> diseño = new LinkedList<>();
+        LinkedList<objPc> compu = new LinkedList<>();
         int opc;
         do 
         {
             principal m = new principal();
             opc = m.Menu();
             menusDisEIng menus = new menusDisEIng();
+            metodo mt = new metodo();
             switch (opc) 
             {
                 case 1:
-                    ingeneria = menus.menuIngenieria(ingeneria);
+                    if (compu.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay computadores registrados. No se puede realizar el préstamo.");
+                    } 
+                    else 
+                    {
+                        ingeneria = menus.menuIngenieria(ingeneria, compu);
+                    }
                     break;
                 case 2:
                     diseño = menus.menuDiseño(diseño);
+                    break;
+                case 3:
+                    //compu = mt.menuDiseño(compu);
+                    break;
+                case 4:
+                    compu = mt.IngresarComputador(compu);
+                    break;
+                case 5:
+                    //compu = mt.menuDiseño(tablet);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "El programa ha terminado");
                     break;
             }
             
-        } while (opc != 4);
+        } while (opc != 6);
     }
 }
