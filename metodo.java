@@ -99,7 +99,7 @@ public class metodo
             System.out.println("Serial Prestado: " + inge.getSerial());
             System.out.println("-----------------------");
         }
-
+    
     }
     public LinkedList<objEst_Ingenieria> ValidarEstIng(LinkedList<objEst_Ingenieria> listIng, objEst_Ingenieria ObjIng) 
     {
