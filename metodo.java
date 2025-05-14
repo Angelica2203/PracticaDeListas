@@ -122,7 +122,7 @@ public class metodo
         return listIng;
     }
     
-    public LinkedList<objEst_Diseño> IngresarEstDiseño(LinkedList<objEst_Diseño> lisDis)
+    public LinkedList<objEst_Diseño> IngresarEstDiseño(LinkedList<objEst_Diseño> lisDis, LinkedList<objTablet> listTablet)
     {
         String ingreso = "";
         objEst_Diseño o = new objEst_Diseño();
@@ -175,6 +175,42 @@ public class metodo
             ingreso =  JOptionPane.showInputDialog(null, "Ingrese número entero valido");
         }
         o.setCantAsignat(Integer.parseInt(ingreso));
+        String serialTableta = "";
+        objTablet tabletaAsignada = null;
+
+        do {
+            serialTableta = JOptionPane.showInputDialog("Ingrese serial de la tableta a prestar:");
+            boolean encontrada = false;
+
+            for (objTablet t : listTablet) {
+                if (t.getSerial().equalsIgnoreCase(serialTableta)) {
+                    encontrada = true;
+                    tabletaAsignada = t;
+                    break;
+                }
+            }
+
+            if (!encontrada) {
+                JOptionPane.showMessageDialog(null, "El serial no existe en el inventario");
+                serialTableta = "";
+                continue;
+            }
+
+            boolean yaPrestada = false;  // Validar si ya está prestada
+            for (objEst_Diseño e : lisDis) {
+                if (e.getSerial().equalsIgnoreCase(serialTableta)) {
+                    yaPrestada = true;
+                    serialTableta = JOptionPane.showInputDialog("El serial ya existe, intente con otro");
+                }
+            }
+
+            if (yaPrestada) {
+                JOptionPane.showMessageDialog(null, "Esa tableta ya está asignada a otro estudiante");
+                serialTableta = "";
+            }
+
+        } while (serialTableta.isEmpty());
+        o.setSerial(serialTableta);
         return validarExisteEstDis(lisDis,o);//No vaya a ingresar estudiante exixtente
     }
     public void mostrarEstDis (LinkedList<objEst_Diseño> listDis)
@@ -197,18 +233,19 @@ public class metodo
             if (est.getCedula().equalsIgnoreCase(ingresoEstDis.getCedula())) 
             {
                 encontrado = true;
-                JOptionPane.showMessageDialog( null, "El estudiante ya existe");
+                JOptionPane.showMessageDialog( null, "Este estudiante ya tiene un prestamo");
                 break;
             }
         }
         if(!encontrado)
         {
-            lisDis.offer(ingresoEstDis);
+            lisDis.add(ingresoEstDis);
             JOptionPane.showMessageDialog(null, "Estudiante ingresado correctamente");
         }
         mostrarEstDis(lisDis);
         return lisDis; 
     } 
+<<<<<<< HEAD
     public LinkedList<objPc> IngresarComputador(LinkedList<objPc> listCompu) 
     {
         objPc compu = new objPc();
@@ -279,4 +316,126 @@ public class metodo
         return listCompu;
     }
     
+=======
+    public static void registrarTableta(LinkedList<objTablet> listaTabletas) 
+    {
+        String ingreso;
+        objTablet objTab = new objTablet();
+
+        do {
+            ingreso = JOptionPane.showInputDialog(null, "Ingrese el serial de la tableta:");
+            if (ingreso == null || !ingreso.matches("^[a-zA-Z0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "Serial inválido. Solo letras y números sin espacios.");
+                ingreso = "";
+                continue;
+            }
+
+        boolean existe = false; //Que el serial no exista ya
+        for (objTablet t : listaTabletas) {
+            if (t.getSerial().equalsIgnoreCase(ingreso)) {
+                existe = true;
+                break;
+            }
+        }
+        if (existe) {
+            JOptionPane.showMessageDialog(null, "Ya existe una tableta con ese serial");
+            ingreso = "";
+        }
+
+    } while (ingreso.isEmpty());
+    objTab.setSerial(ingreso);
+
+    do {
+        ingreso = JOptionPane.showInputDialog(null, "Ingrese la marca de la tableta:");
+        if (ingreso == null || !ingreso.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+            JOptionPane.showMessageDialog(null, "Marca inválida");
+            ingreso = "";
+        }
+    } while (ingreso.isEmpty());
+    objTab.setMarca(ingreso);
+    
+    do {
+        ingreso = JOptionPane.showInputDialog(null, "Ingrese el tamaño de la pantalla (en pulgadas):");
+        try {
+            float tam = Float.parseFloat(ingreso);
+            objTab.setTamaño(tam);
+            break;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tamaño inválido");
+        }
+    } while (true);
+
+    do {
+        ingreso = JOptionPane.showInputDialog(null, "Ingrese el precio de la tableta:");
+        try {
+            float precio = Float.parseFloat(ingreso);
+            objTab.setPrecio(precio);
+            break;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Precio inválido");
+        }
+    } while (true);
+
+    do {
+        ingreso = JOptionPane.showInputDialog(null, "Ingrese el peso en kg de la tableta:");
+        try {
+            float peso = Float.parseFloat(ingreso);
+            objTab.setPeso(peso);
+            break;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Peso inválido");
+        }
+    } while (true);
+    objTab.setAlmacenamiento(subMenuAlmacenamiento());
+    listaTabletas.add(objTab);
+    JOptionPane.showMessageDialog(null, "Tableta registrada con éxito");
+}
+    public static String subMenuAlmacenamiento() 
+    {
+        String opcion = "";
+        String almacenamiento = "";
+
+        do {
+            opcion = JOptionPane.showInputDialog(
+                "Seleccione el tipo de almacenamiento:\n" +
+                "1. 256 GB\n" +
+                "2. 512 GB\n" +
+                "3. 1 TB"
+            );
+
+            if (opcion == null || !opcion.matches("[1-3]")) {
+                JOptionPane.showMessageDialog(null, "Opción inválida, intente nuevamente.");
+            }
+        } while (opcion == null || !opcion.matches("[1-3]"));
+
+        switch (opcion) {
+            case "1":
+                almacenamiento = "256 GB";
+                break;
+            case "2":
+                almacenamiento = "512 GB";
+                break;
+            case "3":
+                almacenamiento = "1 TB";
+                break;
+        }
+        return almacenamiento;
+    }
+    public static objTablet buscarTabletaDisponible(String serial, LinkedList<objTablet> listaTabletas, LinkedList<objEst_Diseño> listaEstudiantes) {
+    for (objTablet t : listaTabletas) {
+        if (t.getSerial().equalsIgnoreCase(serial)) {
+            for (objEst_Diseño est : listaEstudiantes) //Validar si ya está asignada a un estudiante
+            {
+                if (est.getSerial().equalsIgnoreCase(serial)) {
+                    JOptionPane.showMessageDialog(null, "La tableta ya está asignada a un estudiante.");
+                    return null;
+                }
+            }
+            return t; // Está disponible
+        }
+    }
+    JOptionPane.showMessageDialog(null, "No existe ninguna tableta con ese serial.");
+    return null;
+}
+>>>>>>> origin/cambios
 }

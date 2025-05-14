@@ -42,7 +42,11 @@ public class principal
     {
         LinkedList<objEst_Ingenieria> ingeneria = new LinkedList<>();
         LinkedList<objEst_Diseño> diseño = new LinkedList<>();
+<<<<<<< HEAD
         LinkedList<objPc> compu = new LinkedList<>();
+=======
+        LinkedList<objTablet> tablet = new LinkedList<>();
+>>>>>>> origin/cambios
         int opc;
         do 
         {
@@ -63,7 +67,7 @@ public class principal
                     }
                     break;
                 case 2:
-                    diseño = menus.menuDiseño(diseño);
+                    diseño = menus.menuDiseño(diseño, tablet);
                     break;
                 case 3:
                     //compu = mt.menuDiseño(compu);
