@@ -40,6 +40,7 @@ public class principal
     {
         LinkedList<objEst_Ingenieria> ingeneria = new LinkedList<>();
         LinkedList<objEst_Diseño> diseño = new LinkedList<>();
+        LinkedList<objTablet> tablet = new LinkedList<>();
         int opc;
         do 
         {
@@ -52,7 +53,7 @@ public class principal
                     ingeneria = menus.menuIngenieria(ingeneria);
                     break;
                 case 2:
-                    diseño = menus.menuDiseño(diseño);
+                    diseño = menus.menuDiseño(diseño, tablet);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "El programa ha terminado");
