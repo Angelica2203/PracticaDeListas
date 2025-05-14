@@ -1,12 +1,11 @@
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 public class menusDisEIng 
 {
-    public LinkedList<objEst_Ingenieria> menuIngenieria(LinkedList<objEst_Ingenieria> lisIng) 
+    public LinkedList<objEst_Ingenieria> menuIngenieria(LinkedList<objEst_Ingenieria> lisIng, LinkedList<objPc> lisCompu) 
     {
         boolean bandera = true;
         String rpta = "";
@@ -35,7 +34,7 @@ public class menusDisEIng
             switch (opt) 
             {
                 case 1:
-                    lisIng = m.IngresarEstIng(lisIng);
+                    lisIng = m.IngresarEstIng(lisIng, lisCompu);
                     break;
                 case 2:
                    // c = m.PrestarComputador(c);

@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class metodo 
 {
     Scanner sc = new Scanner(System.in);
-    public LinkedList<objEst_Ingenieria> IngresarEstIng(LinkedList<objEst_Ingenieria> listIng) 
+    public LinkedList<objEst_Ingenieria> IngresarEstIng(LinkedList<objEst_Ingenieria> listIng, LinkedList<objPc> listCompu) 
     {
         objEst_Ingenieria ing = new objEst_Ingenieria(); 
         // Valida vacios
@@ -59,18 +59,44 @@ public class metodo
             entrada = JOptionPane.showInputDialog("Ingrese el promedio acumulado del estudiante:");
         }
         ing.setPromAcum(Double.parseDouble(entrada));
+
+        // Validar serial
+        entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+        while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z0-9]+")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Serial no valido. Solo permite letras y numeros.");
+            entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+        }
+        for (objEst_Ingenieria ingen : listIng) 
+        {
+            if (ingen.getSerial().equals(entrada)) 
+            {
+                JOptionPane.showMessageDialog(null, "Este serial ya existe");
+                entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+            }
+        }
+        // Validar que el serial no exista en la lista de computadores
+        for (objPc compu : listCompu) 
+        {
+            if (compu.getSerial().equals(entrada)) 
+            {
+                JOptionPane.showMessageDialog(null, "El serial no existe en la lista de computadores");
+                entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+            }
+        }
+        ing.setSerial(entrada);
         return ValidarEstIng(listIng, ing);
+
     }
     public void Mostrar(LinkedList<objEst_Ingenieria> listIng) 
     {
+        System.out.println("---- ESTUDIANTES INGENIERIA ---- ");
         for (objEst_Ingenieria inge : listIng) 
         {
             System.out.println("Cedula: " + inge.getCedula());
             System.out.println("Nombre: " + inge.getNombre());
-            System.out.println("Apellido: " + inge.getApellido());
-            System.out.println("Telefono: " + inge.getTelefono());
             System.out.println("Semestre: " + inge.getNumSemestre());
-            System.out.println("Promedio: " + inge.getPromAcum());
+            System.out.println("Serial Prestado: " + inge.getSerial());
             System.out.println("-----------------------");
         }
 
@@ -83,7 +109,7 @@ public class metodo
             if (ing.getCedula().equalsIgnoreCase(ObjIng.getCedula())) 
             {
                 encontrado = true;
-                JOptionPane.showMessageDialog(null, "El estudiante ya existe");
+                JOptionPane.showMessageDialog(null, "Este estudiante ya tiene un prestamo");
                 break;
             }
         }
@@ -183,4 +209,74 @@ public class metodo
         mostrarEstDis(lisDis);
         return lisDis; 
     } 
+    public LinkedList<objPc> IngresarComputador(LinkedList<objPc> listCompu) 
+    {
+        objPc compu = new objPc();
+        String entrada;
+        entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+        while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z0-9]+")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Serial no valido. Solo permite letras y numeros.");
+            entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+        }
+        compu.setSerial(entrada);
+
+        entrada = JOptionPane.showInputDialog("Ingrese la marca del computador:");
+        while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z ]+")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Marca no valida. Solo permite letras.");
+            entrada = JOptionPane.showInputDialog("Ingrese la marca del computador:");
+        }
+        compu.setMarca(entrada);
+        //Validar decimal
+        entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador:");
+        while (!entrada.matches("\\d+([.,]\\d+)?")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Tamaño no valido. Solo permite numero.");
+            entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador:");
+        }
+        compu.setTamaño(Double.parseDouble(entrada));
+
+        //Validar decimal
+        entrada = JOptionPane.showInputDialog("Ingrese el precio del computador:");
+        while (!entrada.matches("\\d+([.,]\\d+)?")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Precio no valido. Solo permite numero.");
+            entrada = JOptionPane.showInputDialog("Ingrese el precio del estudiante:");
+        }
+        compu.setPrecio(Double.parseDouble(entrada));
+        return ValidarCompu(listCompu, compu);
+    }
+    public void MostrarCompu(LinkedList<objPc> listCompu) 
+    {
+        System.out.println("---- COMPUTADOR ---- ");
+        for (objPc pc : listCompu) 
+        {
+            System.out.println("Serial: " + pc.getSerial());
+            System.out.println("Marca: " + pc.getMarca());
+            System.out.println("-----------------------");
+        }
+
+    }
+    public LinkedList<objPc> ValidarCompu(LinkedList<objPc> listCompu, objPc pc) 
+    {
+        boolean encontrado = false;
+        for (objPc compu : listCompu) 
+        {
+            if (compu.getSerial().equals(pc.getSerial())) 
+            {
+                encontrado = true;
+                JOptionPane.showMessageDialog(null, "El computador ya existe");
+                break;
+            }
+        }
+        if (!encontrado) 
+        {
+            listCompu.add(pc);
+            JOptionPane.showMessageDialog(null, "Computador ingresado correctamente");
+        }
+        MostrarCompu(listCompu);
+        return listCompu;
+    }
+    
 }
