@@ -43,6 +43,7 @@ public class principal
         LinkedList<objEst_Ingenieria> ingeneria = new LinkedList<>();
         LinkedList<objEst_Diseño> diseño = new LinkedList<>();
         LinkedList<objPc> compu = new LinkedList<>();
+        LinkedList<objTablet> tablet = new LinkedList<>();
         int opc;
         do 
         {
@@ -63,7 +64,7 @@ public class principal
                     }
                     break;
                 case 2:
-                    diseño = menus.menuDiseño(diseño);
+                    diseño = menus.menuDiseño(diseño, tablet);
                     break;
                 case 3:
                     //compu = mt.menuDiseño(compu);
@@ -72,7 +73,7 @@ public class principal
                     compu = mt.IngresarComputador(compu);
                     break;
                 case 5:
-                    //compu = mt.menuDiseño(tablet);
+                     mt.registrarTableta(tablet);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "El programa ha terminado");

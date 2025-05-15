@@ -53,12 +53,14 @@ public class menusDisEIng
         }
         return lisIng;
     }
-    public LinkedList<objEst_Diseño> menuDiseño(LinkedList<objEst_Diseño> lisDis) 
+    public LinkedList<objEst_Diseño> menuDiseño(LinkedList<objEst_Diseño> lisDis, LinkedList<objTablet> lisTab) 
     {
         boolean bandera = true;
         String rpta = "";
         metodo m = new metodo();
+        menusDisEIng menus = new menusDisEIng();
         int opt = 0;
+       
         while (bandera) 
         {
             do {
@@ -82,10 +84,24 @@ public class menusDisEIng
             switch (opt) 
             {
                 case 1:
-                    lisDis = m.IngresarEstDiseño(lisDis);
+                    if (lisDis.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay tabletas registrados. No se puede realizar el préstamo.");
+                    } 
+                    else 
+                    {
+                        lisDis = m.IngresarEstDiseño(lisDis, lisTab);
+                    }
                     break;
                 case 2:
-                   // c = m.PrestarComputador(c);
+                   if (lisDis.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay tabletas registrados. No se puede realizar el préstamo.");
+                    } 
+                    else 
+                    {
+                        lisDis = menus.menuDiseño(lisDis, lisTab);
+                    }
                     break;
                 case 3:
                     //c = m.modificarComp(c);
