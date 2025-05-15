@@ -9,6 +9,30 @@ public class metodo
     public LinkedList<objEst_Ingenieria> IngresarEstIng(LinkedList<objEst_Ingenieria> listIng, LinkedList<objPc> listCompu) 
     {
         objEst_Ingenieria ing = new objEst_Ingenieria(); 
+        // Verificar si todos los computadores están prestados
+        boolean todosPrestados = true;
+        for (objPc pc : listCompu) {
+            boolean prestado = false;
+            for (objEst_Ingenieria inge : listIng) 
+            {
+                if (inge.getSerial().equals(pc.getSerial())) 
+                {
+                    prestado = true;
+                    break;
+                }
+            }
+            if (!prestado) 
+            {
+                todosPrestados = false;
+                break;
+            }
+        }
+
+        if (todosPrestados) 
+        {
+            JOptionPane.showMessageDialog(null, "Todos los computadores ya están prestados. Regresando al menú principal.");
+            return listIng; 
+        }
         // Valida vacios
         String entrada;
         entrada = JOptionPane.showInputDialog("Ingrese la cedula del estudiante:");
@@ -55,35 +79,52 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el promedio acumulado del estudiante:");
         while (!entrada.matches("\\d+([.,]\\d+)?")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Promedio acumulado no valido. Solo permite numero.");
+            JOptionPane.showMessageDialog(null, "Error: Promedio acumulado no valido. Solo permite numero");
             entrada = JOptionPane.showInputDialog("Ingrese el promedio acumulado del estudiante:");
         }
         ing.setPromAcum(Double.parseDouble(entrada));
 
         // Validar serial
-        entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
-        while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z0-9]+")) 
+        do 
         {
-            JOptionPane.showMessageDialog(null, "Error: Serial no valido. Solo permite letras y numeros.");
-            entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
-        }
-        for (objEst_Ingenieria ingen : listIng) 
-        {
-            if (ingen.getSerial().equals(entrada)) 
+            entrada = JOptionPane.showInputDialog("Ingrese serial de la tableta a prestar:");
+            if (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z0-9]+")) 
             {
-                JOptionPane.showMessageDialog(null, "Este serial ya existe");
-                entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+            JOptionPane.showMessageDialog(null, "Error: El serial debe contener solo números");
+            entrada = ""; //Para que vuelva a repetir el ciclo 
+            continue;
             }
-        }
-        // Validar que el serial no exista en la lista de computadores
-        for (objPc compu : listCompu) 
-        {
-            if (compu.getSerial().equals(entrada)) 
+            boolean encontrada = false;
+
+            for (objPc pc : listCompu) {
+                if (pc.getSerial().equals(entrada)) {
+                    encontrada = true;
+                    break;
+                }
+            }
+            if (!encontrada) {
+                JOptionPane.showMessageDialog(null, "El serial no existe en el inventario");
+                entrada = ""; 
+                continue;
+            }
+            boolean yaPrestada = false;
+            for (objEst_Ingenieria inge : listIng) 
             {
-                JOptionPane.showMessageDialog(null, "El serial no existe en la lista de computadores");
-                entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
+                if (inge.getSerial().equals(entrada)) 
+                {
+                    yaPrestada = true;
+                    break;
+                }
             }
-        }
+
+            if (yaPrestada) 
+            {
+                JOptionPane.showMessageDialog(null, "Ese computador ya está asignada a otro estudiante");
+                entrada = "";
+                continue;
+            }
+
+        } while (entrada.isEmpty());
         ing.setSerial(entrada);
         return ValidarEstIng(listIng, ing);
 
@@ -116,7 +157,7 @@ public class metodo
         if (!encontrado) 
         {
             listIng.add(ObjIng);
-            JOptionPane.showMessageDialog(null, "Estudiante ingresado correctamente");
+            JOptionPane.showMessageDialog(null, "Estudiante registrado correctamente");
         }
         Mostrar(listIng);
         return listIng;
@@ -452,20 +493,4 @@ public class metodo
         }
         return almacenamiento;
     }
-    public  objTablet buscarTabletaDisponible(String serial, LinkedList<objTablet> listaTabletas, LinkedList<objEst_Diseño> listaEstudiantes) {
-    for (objTablet t : listaTabletas) {
-        if (t.getSerial().equalsIgnoreCase(serial)) {
-            for (objEst_Diseño est : listaEstudiantes) //Validar si ya está asignada a un estudiante
-            {
-                if (est.getSerial().equalsIgnoreCase(serial)) {
-                    JOptionPane.showMessageDialog(null, "La tableta ya está asignada a un estudiante.");
-                    return null;
-                }
-            }
-            return t; // Está disponible
-        }
-    }
-    JOptionPane.showMessageDialog(null, "No existe ninguna tableta con ese serial.");
-    return null;
-}
 }
