@@ -42,11 +42,8 @@ public class principal
     {
         LinkedList<objEst_Ingenieria> ingeneria = new LinkedList<>();
         LinkedList<objEst_Diseño> diseño = new LinkedList<>();
-<<<<<<< HEAD
         LinkedList<objPc> compu = new LinkedList<>();
-=======
         LinkedList<objTablet> tablet = new LinkedList<>();
->>>>>>> origin/cambios
         int opc;
         do 
         {
