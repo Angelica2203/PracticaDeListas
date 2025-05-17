@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
-// aaa
 public class principal 
 {
     public int Menu()
@@ -64,8 +63,16 @@ public class principal
                     }
                     break;
                 case 2:
-                    diseño = menus.menuDiseño(diseño, tablet);
+                    if (compu.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay tabletas registrados. No se puede realizar el préstamo.");
+                    } 
+                    else 
+                    {
+                        diseño = menus.menuDiseño(diseño, tablet);
+                    }
                     break;
+                    
                 case 3:
                     if (compu.isEmpty() && tablet.isEmpty()) 
                     {
