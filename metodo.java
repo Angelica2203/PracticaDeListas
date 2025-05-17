@@ -185,7 +185,7 @@ public class metodo
             }
 
             if (todosPrestados) {
-                JOptionPane.showMessageDialog(null, "Todos las tabletas ya están prestados Regresando al menú.");
+                JOptionPane.showMessageDialog(null, "Todos las tabletas ya están prestados Regresando al menú");
                 return lisDis; // volviendo al menu
             }
         ingreso = JOptionPane.showInputDialog("Ingrese el cédula del estudiante");
@@ -322,7 +322,6 @@ public class metodo
     }
     public LinkedList<objPc> IngresarComputador(LinkedList<objPc> listCompu) 
     {
-        metodo m = new metodo();
         objPc compu = new objPc();
         String entrada;
         entrada = JOptionPane.showInputDialog("Ingrese el serial del computador");
@@ -411,7 +410,7 @@ public class metodo
         do {
             ingreso = JOptionPane.showInputDialog(null, "Ingrese el serial de la tableta:");
             if (ingreso == null || !ingreso.matches("^[a-zA-Z0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "Serial inválido. Solo letras y números sin espacios.");
+                JOptionPane.showMessageDialog(null, "Serial inválido, solo letras y números sin espacios.");
                 ingreso = "";
                 continue;
             }
@@ -515,7 +514,7 @@ public class metodo
     }
     public LinkedList<objEst_Diseño> modificarEstDis (LinkedList<objEst_Diseño> lisDis)
     {
-         while (lisDis.isEmpty()) 
+        while (lisDis.isEmpty()) 
         {
             System.out.println("No hay estudiantes registrados");
             return lisDis;
@@ -768,4 +767,61 @@ public class metodo
         }
         return listIng; 
     }
+    public LinkedList<objEst_Diseño> devolverEstDis (LinkedList<objEst_Diseño> lisDis)
+    {
+        while (lisDis.isEmpty()) 
+        {
+            System.out.println("No hay estudiantes registrados");
+            return lisDis;
+        }
+        String devolv = JOptionPane.showInputDialog("Ingresar cedula del estudiante o el serial de la tableta a devolver");
+        boolean devolver = false;
+        for(objEst_Diseño est : lisDis)
+        {
+            if(est.getSerial().equals(devolv) || est.getCedula().equals(devolv))
+            {
+                devolver = true;
+                lisDis.remove(est);
+                JOptionPane.showMessageDialog(null, "Tableta devuelta correctamente");
+                break;
+            }  
+        }
+        if(!devolver)
+        {
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+            return lisDis; 
+        }
+        return lisDis;
+    }
+     public LinkedList<objEst_Diseño> buscarTabPrest (LinkedList<objEst_Diseño> lisDis)
+    {
+        while (lisDis.isEmpty()) 
+        {
+            System.out.println("No hay estudiantes registrados");
+            return lisDis;
+        }
+        String buscar = JOptionPane.showInputDialog("Ingresar cedula del estudiante o el serial de la tableta a buscar");
+        boolean encont = false;
+        for(objEst_Diseño est : lisDis)
+        {
+            if(est.getSerial().equals(buscar) || est.getCedula().equals(buscar))
+            {
+                encont = true;
+                JOptionPane.showMessageDialog(null, "DATOS DEL ESTUDIANTE BUSCADO\n"+
+                         "Nombre:" + est.getNombre()+"\n" + "Apellido: " + est.getApellido() +"\n" +
+                         "Cedula: "+ est.getCedula() + "\n" + "Telefono: " + est.getTelefono() + "\n" +
+                         "Modalidad de estudio: " + est.getModalidadEstud() +"\n" + 
+                         "Cantidad de asignatura: " + est.getCantAsignat() + "\n" + "Serial de la tableta: " + est.getSerial() ); 
+                break;
+            }  
+        }
+        if(!encont)
+        {
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+            return lisDis; 
+        }
+        return lisDis;
+    }
+
+    
 }

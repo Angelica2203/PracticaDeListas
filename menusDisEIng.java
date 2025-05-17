@@ -90,10 +90,10 @@ public class menusDisEIng
                    lisDis = m.modificarEstDis(lisDis);
                     break;
                 case 3:
-                    //c = m.modificarComp(c);
+                    lisDis = m.devolverEstDis(lisDis);
                     break;
                 case 4:
-                    //c = m.devolverComp(c);
+                    lisDis = m.buscarTabPrest(lisDis);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Devuelta al menú principal");
