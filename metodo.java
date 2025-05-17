@@ -582,7 +582,8 @@ public class metodo
                     System.out.println("Nueva modalidad:" + est.getModalidadEstud());
                     System.out.println("Nueva cantidad de asignaturas:" + est.getCantAsignat());
                     System.out.println("---------------------------------------------");
-                    
+              
+                
             }
         }
         if(!amodif)
