@@ -76,7 +76,7 @@ public class principal
                 case 3:
                     if (compu.isEmpty() && tablet.isEmpty()) 
                     {
-                        JOptionPane.showMessageDialog(null, "No hay equipos registrados");
+                        JOptionPane.showMessageDialog(null, "Inventario vacio. No hay equipos registrados");
                     } 
                     else 
                     {
