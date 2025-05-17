@@ -37,10 +37,10 @@ public class menusDisEIng
                     lisIng = m.IngresarEstIng(lisIng, lisCompu);
                     break;
                 case 2:
-                   // c = m.PrestarComputador(c);
+                    lisIng = m.modificarIng(lisIng);
                     break;
                 case 3:
-                    //c = m.modificarComp(c);
+                    // c = m.PrestarComputador(c);
                     break;
                 case 4:
                     //c = m.devolverComp(c);
