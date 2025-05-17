@@ -1,4 +1,3 @@
-//aaaa
 import java.util.Scanner;
 import java.util.LinkedList;
 
@@ -32,7 +31,7 @@ public class metodo
 
         if (todosPrestados) 
         {
-            JOptionPane.showMessageDialog(null, "Todos los computadores ya están prestados. Regresando al menú principal");
+            JOptionPane.showMessageDialog(null, "Todos los computadores ya están prestados. Regresando al menú");
             return listIng; 
         }
         // Valida vacios
@@ -768,4 +767,106 @@ public class metodo
         }
         return listIng; 
     }
+    public LinkedList<objEst_Ingenieria> devolverPC(LinkedList<objEst_Ingenieria> listIng) 
+    {
+        while (listIng.isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(null, "No hay estudiantes registrados");
+            return listIng;
+        }
+        String CCoSerial = JOptionPane.showInputDialog("Ingrese la cédula del estudiante o el serial del computador prestado a devolver");
+        boolean encontrado = false;
+        for (objEst_Ingenieria ing : listIng) 
+        {
+            if (ing.getSerial().equals(CCoSerial) || ing.getCedula().equals(CCoSerial)) 
+            {
+                encontrado = true;
+                listIng.remove(ing);
+                JOptionPane.showMessageDialog(null, "Computador devuelto correctamente");
+                break;
+            }
+        }
+        if (!encontrado) 
+        {
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+        }
+        return listIng;
+    }
+    public LinkedList<objEst_Ingenieria> buscarPCprestada(LinkedList<objEst_Ingenieria> listIng) 
+    {
+        while (listIng.isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(null, "No hay estudiantes registrados");
+            return listIng;
+        }
+        String CCoSerial = JOptionPane.showInputDialog("Ingrese la cédula del estudiante o el serial del computador prestado a devolver");
+        boolean encontrado = false;
+        for (objEst_Ingenieria ing : listIng) 
+        {
+            if (ing.getSerial().equals(CCoSerial) || ing.getCedula().equals(CCoSerial)) 
+            {
+                encontrado = true;
+                JOptionPane.showMessageDialog(null, "DATOS DEL ESTUDIANTE BUSCADO" +
+                                                                    "\nNombre: " + ing.getNombre() +
+                                                                    "\nApellido: " + ing.getApellido() +
+                                                                    "\nTelefono: " + ing.getTelefono() +
+                                                                    "\nSemestre: " + ing.getNumSemestre() +
+                                                                    "\nPromedio Acumulado: " + ing.getPromAcum() +
+                                                                    "\nSerial del computador prestado: " + ing.getSerial());
+                break;
+            }
+        }
+        if (!encontrado) 
+        {
+            JOptionPane.showMessageDialog(null, "Computador no prestado");
+        }
+        return listIng;
+    }
+    public void inventarioTotal(LinkedList<objPc> listCompu, LinkedList<objTablet> listTab, LinkedList<objEst_Ingenieria> listIng, LinkedList<objEst_Diseño> listDis) 
+    {
+        System.out.println("---- INVENTARIO TOTAL ----");
+        System.out.println("---- COMPUTADORES ---- ");
+        for (objPc pc : listCompu) 
+        {
+            boolean prestado = false;
+            for (objEst_Ingenieria est : listIng) 
+            {
+                if (est.getSerial().equals(pc.getSerial())) 
+                {
+                    prestado = true;
+                    break;
+                }
+            }
+            System.out.println("Serial: " + pc.getSerial()+
+                               "\nMarca: " + pc.getMarca() +
+                               "\nTamaño: " + pc.getTamaño() +
+                               "\nPrecio: " + pc.getPrecio() +
+                               "\nSistema Operativo: " + pc.getSisOperativo() +
+                               "\nProcesador: " + pc.getProcesador() +
+                               "\nEstado: " + (prestado ? "Prestado" : "Disponible"));
+            System.out.println("-----------------------");
+        }
+        System.out.println("---- TABLETAS ---- ");
+        for (objTablet tab : listTab) 
+        {
+            boolean prestada = false;
+            for (objEst_Diseño est : listDis) 
+            {
+                if (est.getSerial().equals(tab.getSerial())) 
+                {
+                    prestada = true;
+                    break;
+                }
+            }
+            System.out.println("Serial: " + tab.getSerial() + 
+                               "\nMarca: " + tab.getMarca() +
+                               "\nTamaño: " + tab.getTamaño() +
+                               "\nPrecio: " + tab.getPrecio() +
+                               "\nPeso: " + tab.getPeso() +
+                               "\nAlmacenamiento: " + tab.getAlmacenamiento() +
+                               "\nEstado: " + (prestada ? "Prestada" : "Disponible"));
+            System.out.println("-----------------------");
+        }
+    }
+    
 }

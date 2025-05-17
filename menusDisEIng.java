@@ -40,10 +40,10 @@ public class menusDisEIng
                     lisIng = m.modificarIng(lisIng);
                     break;
                 case 3:
-                    // c = m.PrestarComputador(c);
+                    lisIng = m.devolverPC(lisIng);
                     break;
                 case 4:
-                    //c = m.devolverComp(c);
+                    lisIng = m.buscarPCprestada(lisIng);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Devuelta al menú principal");
@@ -58,7 +58,6 @@ public class menusDisEIng
         boolean bandera = true;
         String rpta = "";
         metodo m = new metodo();
-        menusDisEIng menus = new menusDisEIng();
         int opt = 0;
        
         while (bandera) 

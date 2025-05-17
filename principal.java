@@ -67,7 +67,14 @@ public class principal
                     diseño = menus.menuDiseño(diseño, tablet);
                     break;
                 case 3:
-                    //compu = mt.menuDiseño(compu);
+                    if (compu.isEmpty() && tablet.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay equipos registrados");
+                    } 
+                    else 
+                    {
+                        mt.inventarioTotal(compu, tablet, ingeneria, diseño);
+                    }
                     break;
                 case 4:
                     compu = mt.IngresarComputador(compu);
