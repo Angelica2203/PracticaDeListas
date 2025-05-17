@@ -189,28 +189,28 @@ public class metodo
         ingreso = JOptionPane.showInputDialog("Ingrese el cédula del estudiante");
         while (!ingreso.matches("\\d+")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Cedula no válida. Solo se permiten números.");
+            JOptionPane.showMessageDialog(null, "Error: Cedula no válida, solo se permiten números");
             ingreso = JOptionPane.showInputDialog("Ingrese la cedula del estudiante");
         }
         o.setCedula(ingreso);
         ingreso = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
         while (ingreso == null || ingreso.trim().isEmpty() || !ingreso.matches("[a-zA-Z ]+")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Nombre no valido. Solo permite letras.");
+            JOptionPane.showMessageDialog(null, "Error: Nombre no valido, solo permite letras.");
             ingreso = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
         }
         o.setNombre(ingreso);
         ingreso = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
         while (ingreso == null || ingreso.trim().isEmpty() || !ingreso.matches("[a-zA-Z ]+")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Nombre no valido. Solo permite letras.");
+            JOptionPane.showMessageDialog(null, "Error: Nombre no valido, solo permite letras.");
             ingreso = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
         }
         o.setApellido(ingreso);
         ingreso = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
         while (!ingreso.matches("\\d+")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Telefono no válido. Solo se permiten números.");
+            JOptionPane.showMessageDialog(null, "Error: Telefono no válido, solo se permiten números.");
             ingreso = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
         }
         o.setTelefono(ingreso);
@@ -223,7 +223,7 @@ public class metodo
             }
             ingreso = ingreso.trim().toLowerCase();
             if (!ingreso.equals("virtual") && !ingreso.equals("presencial")) {
-            JOptionPane.showMessageDialog(null, "Modalidad inválida. Solo se permite: virtual o presencial.");
+            JOptionPane.showMessageDialog(null, "Modalidad inválida, solo se permite: virtual o presencial.");
             ingreso = ""; // fuerza repetir el ciclo
             }
         }while (ingreso.isEmpty());
@@ -324,7 +324,7 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
         while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z0-9]+")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Serial no valido. Solo permite letras y numeros.");
+            JOptionPane.showMessageDialog(null, "Error: Serial no valido, solo permite letras y numeros.");
             entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
         }
         compu.setSerial(entrada);
@@ -332,7 +332,7 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese la marca del computador:");
         while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z ]+")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Marca no valida. Solo permite letras.");
+            JOptionPane.showMessageDialog(null, "Error: Marca no valida, solo permite letras.");
             entrada = JOptionPane.showInputDialog("Ingrese la marca del computador:");
         }
         compu.setMarca(entrada);
@@ -340,7 +340,7 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador:");
         while (!entrada.matches("\\d+([.,]\\d+)?")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Tamaño no valido. Solo permite numero.");
+            JOptionPane.showMessageDialog(null, "Error: Tamaño no valido, solo permite numero.");
             entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador:");
         }
         compu.setTamaño(Double.parseDouble(entrada));
@@ -349,7 +349,7 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el precio del computador:");
         while (!entrada.matches("\\d+([.,]\\d+)?")) 
         {
-            JOptionPane.showMessageDialog(null, "Error: Precio no valido. Solo permite numero.");
+            JOptionPane.showMessageDialog(null, "Error: Precio no valido, solo permite numero.");
             entrada = JOptionPane.showInputDialog("Ingrese el precio del estudiante:");
         }
         compu.setPrecio(Double.parseDouble(entrada));
@@ -392,76 +392,59 @@ public class metodo
         String ingreso;
         objTablet objTab = new objTablet();
         metodo m = new metodo();
-
         do {
             ingreso = JOptionPane.showInputDialog(null, "Ingrese el serial de la tableta:");
             if (ingreso == null || !ingreso.matches("^[a-zA-Z0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "Serial inválido. Solo letras y números sin espacios.");
+                JOptionPane.showMessageDialog(null, "Serial inválido, solo letras y números sin espacios.");
                 ingreso = "";
                 continue;
             }
-
-        boolean existe = false; //Que el serial no exista ya
-        for (objTablet t : listaTabletas) {
-            if (t.getSerial().equalsIgnoreCase(ingreso)) {
-                existe = true;
-                break;
+            boolean existe = false; //Que el serial no exista ya
+            for (objTablet t : listaTabletas) {
+                if (t.getSerial().equalsIgnoreCase(ingreso)) {
+                    existe = true;
+                    break;
+                }
             }
+            if (existe) {
+                JOptionPane.showMessageDialog(null, "Ya existe una tableta con ese serial");
+                ingreso = "";
+            }
+        } while (ingreso.isEmpty());
+        objTab.setSerial(ingreso);
+        ingreso = JOptionPane.showInputDialog("Ingrese la marca de la tablet");
+        while (ingreso == null || ingreso.trim().isEmpty() || !ingreso.matches("[a-zA-Z ]+")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Nombre no valido, solo permite letras.");
+            ingreso = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
         }
-        if (existe) {
-            JOptionPane.showMessageDialog(null, "Ya existe una tableta con ese serial");
-            ingreso = "";
+        objTab.setMarca(ingreso);
+        ingreso = JOptionPane.showInputDialog("Ingrese el tamaño de la tableta:");
+        while (!ingreso.matches("\\d+([.,]\\d+)?")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Tamaño no valido, solo permite numero.");
+            ingreso = JOptionPane.showInputDialog("Ingrese el tamaño de la tableta:");
         }
-
-    } while (ingreso.isEmpty());
-    objTab.setSerial(ingreso);
-
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese la marca de la tableta:");
-        if (ingreso == null || !ingreso.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
-            JOptionPane.showMessageDialog(null, "Marca inválida");
-            ingreso = "";
+        objTab.setTamaño(Double.parseDouble(ingreso));
+        ingreso = JOptionPane.showInputDialog("Ingrese el precio de la tableta:");
+        while (!ingreso.matches("\\d+([.,]\\d+)?")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Tamaño no valido, solo permite numero.");
+            ingreso = JOptionPane.showInputDialog("Ingrese el precio de la tableta:");
         }
-    } while (ingreso.isEmpty());
-    objTab.setMarca(ingreso);
-    
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese el tamaño de la pantalla (en pulgadas):");
-        try {
-            float tam = Float.parseFloat(ingreso);
-            objTab.setTamaño(tam);
-            break;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Tamaño inválido");
+        objTab.setPrecio(Double.parseDouble(ingreso));
+        ingreso = JOptionPane.showInputDialog("Ingrese el peso de la tableta:");
+        while (!ingreso.matches("\\d+([.,]\\d+)?")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: Tamaño no valido, solo permite numero.");
+            ingreso = JOptionPane.showInputDialog("Ingrese el peso de la tableta:");
         }
-    } while (true);
-
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese el precio de la tableta:");
-        try {
-            float precio = Float.parseFloat(ingreso);
-            objTab.setPrecio(precio);
-            break;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Precio inválido");
-        }
-    } while (true);
-
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese el peso en kg de la tableta:");
-        try {
-            float peso = Float.parseFloat(ingreso);
-            objTab.setPeso(peso);
-            break;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Peso inválido");
-        }
-    } while (true);
-    objTab.setAlmacenamiento(m.subMenuAlmacenamiento());
-    listaTabletas.add(objTab);
-    JOptionPane.showMessageDialog(null, "Tableta registrada con éxito");
-    m.MostrarTableta(listaTabletas);
-}
+        objTab.setPeso(Double.parseDouble(ingreso));
+        objTab.setAlmacenamiento(m.subMenuAlmacenamiento());
+        listaTabletas.add(objTab);
+        JOptionPane.showMessageDialog(null, "Tableta registrada con éxito");
+        m.MostrarTableta(listaTabletas);
+    }
     public  String subMenuAlmacenamiento() 
     {
         String opcion = "";
@@ -493,4 +476,104 @@ public class metodo
         }
         return almacenamiento;
     }
+    public LinkedList<objEst_Diseño> modificarEstDis (LinkedList<objEst_Diseño> lisDis)
+    {
+         while (lisDis.isEmpty()) 
+        {
+            System.out.println("No hay estudiantes registrados");
+            return lisDis;
+        }
+        String modific = JOptionPane.showInputDialog("Ingresar cedula del estudiante o el serial de la tableta prestada");
+        String ingreso ="";
+        boolean amodif = false;
+        for(objEst_Diseño est : lisDis)
+        {
+            if(est.getSerial().equals(modific) || est.getCedula().equals(modific))
+            {
+                amodif = true;
+                String opcModif = JOptionPane.showInputDialog("Ingrese la opción a modificar\n" + "1: Nombre\n" + 
+                                                            "2: Apellido\n" +"3: Telefono\n" + "4: Modalidad de estudio\n" + "5: Cantidad de asignaturas");                                  
+                while ( opcModif == null || !opcModif.matches("[1-5]") ) 
+                {
+                   JOptionPane.showMessageDialog(null, "Opción inválida, solo entre 1 - 5, intente nuevamente");
+                   opcModif = JOptionPane.showInputDialog("Ingrese la opción a modificar\n" + "1: Nombre\n" +
+                                                            "2: Apellido\n" +"3: Telefono\n" + "4: Modalidad de estudio\n" + "5: Cantidad de asignaturas");            
+                }
+                switch (opcModif) 
+                {
+                    case "1":
+                        ingreso = JOptionPane.showInputDialog("Ingrese el nuevo nombre del estudiante");
+                        while (ingreso == null || ingreso.trim().isEmpty() || !ingreso.matches("[a-zA-Z ]+")) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Error: Nombre no valido, solo permite letras");
+                            ingreso = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
+                        }
+                        est.setNombre(ingreso);
+                    break;
+                    case "2":
+                        ingreso = JOptionPane.showInputDialog("Ingrese el nuevo apellido del estudiante");
+                        while (ingreso == null || ingreso.trim().isEmpty() || !ingreso.matches("[a-zA-Z ]+")) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Error: Nombre no valido, solo permite letras");
+                            ingreso = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
+                        }
+                        est.setApellido(ingreso);
+                    break;
+                    case "3":
+                        ingreso = JOptionPane.showInputDialog("Ingrese el nuevo telefono del estudiante");
+                        while (!ingreso.matches("\\d+")) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Error: Telefono no válido, solo se permiten números");
+                            ingreso = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
+                        }
+                        est.setTelefono(ingreso);
+                    break;
+                    case "4":
+                        do 
+                        {
+                            ingreso = JOptionPane.showInputDialog(null, "Ingrese la nueva modalidad de estudio: presencial / virtual");
+
+                            if (ingreso == null || ingreso.trim().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "La modalidad no puede estar vacía.");
+                                continue;
+                            }
+                            ingreso = ingreso.trim().toLowerCase();
+                            if (!ingreso.equals("virtual") && !ingreso.equals("presencial")) {
+                            JOptionPane.showMessageDialog(null, "Modalidad inválida, solo se permite: virtual o presencial");
+                            ingreso = ""; // fuerza repetir el ciclo
+                            }
+                        }while (ingreso.isEmpty());
+                            est.setModalidadEstud(ingreso.substring(0, 1).toUpperCase() + ingreso.substring(1));//mayusc inicial
+                    break;
+                    case "5":
+                        ingreso =  JOptionPane.showInputDialog(null, "Ingrese nueva cantidad de asignaturas matriculas por el estudiante");
+                        while (!ingreso.matches("\\d+")) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Dato no valido, reintente");
+                            ingreso =  JOptionPane.showInputDialog(null, "Ingrese número entero valido");
+                        }
+                        est.setCantAsignat(Integer.parseInt(ingreso));
+                    break;
+                        default:
+                        JOptionPane.showMessageDialog(null, "Opción no disponible");
+                    break;
+                }
+                    System.out.println("ESTUDIANTE MODIFICADO");
+                    System.out.println("Nuevo nombre: " + est.getNombre());
+                    System.out.println("Nuevo apellido: " + est.getApellido());
+                    System.out.println("Nuevo telefono:" + est.getTelefono());
+                    System.out.println("Nueva modalidad:" + est.getModalidadEstud());
+                    System.out.println("Nueva cantidad de asignaturas:" + est.getCantAsignat());
+                    System.out.println("---------------------------------------------");
+                    
+            }
+        }
+        if(!amodif)
+        {
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+            return lisDis; 
+        }
+        return lisDis;
+    }
+    
 }

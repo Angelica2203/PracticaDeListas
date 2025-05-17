@@ -84,24 +84,10 @@ public class menusDisEIng
             switch (opt) 
             {
                 case 1:
-                    if (lisDis.isEmpty()) 
-                    {
-                        JOptionPane.showMessageDialog(null, "No hay tabletas registrados. No se puede realizar el préstamo.");
-                    } 
-                    else 
-                    {
-                        lisDis = m.IngresarEstDiseño(lisDis, lisTab);
-                    }
-                    break;
+                   lisDis = m.IngresarEstDiseño(lisDis, lisTab);
+                   break;
                 case 2:
-                   if (lisDis.isEmpty()) 
-                    {
-                        JOptionPane.showMessageDialog(null, "No hay tabletas registrados. No se puede realizar el préstamo.");
-                    } 
-                    else 
-                    {
-                        lisDis = menus.menuDiseño(lisDis, lisTab);
-                    }
+                   lisDis = m.modificarEstDis(lisDis);
                     break;
                 case 3:
                     //c = m.modificarComp(c);
