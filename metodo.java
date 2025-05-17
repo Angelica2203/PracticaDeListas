@@ -328,24 +328,17 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el serial del computador");
         while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z0-9]+")) 
         {
-<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "Error: Serial no valido, solo permite letras y numeros.");
             entrada = JOptionPane.showInputDialog("Ingrese el serial del computador:");
-=======
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
             JOptionPane.showMessageDialog(null, "Error: Serial no valido. Solo permite letras y numeros");
             entrada = JOptionPane.showInputDialog("Ingrese el serial del computador");
         }
         compu.setSerial(entrada);
-
         entrada = JOptionPane.showInputDialog("Ingrese la marca del computador");
         while (entrada == null || entrada.trim().isEmpty() || !entrada.matches("[a-zA-Z ]+")) 
         {
-<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "Error: Marca no valida, solo permite letras.");
             entrada = JOptionPane.showInputDialog("Ingrese la marca del computador:");
-=======
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
             JOptionPane.showMessageDialog(null, "Error: Marca no valida. Solo permite letras");
             entrada = JOptionPane.showInputDialog("Ingrese la marca del computador");
         }
@@ -354,11 +347,8 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador");
         while (!entrada.matches("\\d+([.,]\\d+)?")) 
         {
-<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "Error: Tamaño no valido, solo permite numero.");
             entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador:");
-=======
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
             JOptionPane.showMessageDialog(null, "Error: Tamaño no valido. Solo permite numer");
             entrada = JOptionPane.showInputDialog("Ingrese el tamaño del computador");
         }
@@ -368,11 +358,8 @@ public class metodo
         entrada = JOptionPane.showInputDialog("Ingrese el precio del computador");
         while (!entrada.matches("\\d+([.,]\\d+)?")) 
         {
-<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "Error: Precio no valido, solo permite numero.");
             entrada = JOptionPane.showInputDialog("Ingrese el precio del estudiante:");
-=======
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
             JOptionPane.showMessageDialog(null, "Error: Precio no valido. Solo permite numero");
             entrada = JOptionPane.showInputDialog("Ingrese el precio del estudiante");
         }
@@ -415,14 +402,11 @@ public class metodo
         return listCompu;
     }
     
-    public  void registrarTableta(LinkedList<objTablet> listaTabletas) 
+    public LinkedList<objTablet> registrarTableta(LinkedList<objTablet> listaTabletas) 
     {
         String ingreso;
         objTablet objTab = new objTablet();
-<<<<<<< HEAD
         metodo m = new metodo();
-=======
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
 
         do {
             ingreso = JOptionPane.showInputDialog(null, "Ingrese el serial de la tableta:");
@@ -444,63 +428,60 @@ public class metodo
             ingreso = "";
         }
 
-    } while (ingreso.isEmpty());
-    objTab.setSerial(ingreso);
-
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese la marca de la tableta:");
-        if (ingreso == null || !ingreso.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
-            JOptionPane.showMessageDialog(null, "Marca inválida");
-            ingreso = "";
+        } while (ingreso.isEmpty());
+        objTab.setSerial(ingreso);
+        ingreso = JOptionPane.showInputDialog("Ingresa la marca de la tableta");
+        while (ingreso == null || ingreso.trim().isEmpty() || !ingreso.matches("[a-zA-Z ]+")) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: marca no válida, solo se permiten números.");
+            ingreso = JOptionPane.showInputDialog("Ingrese la marca del estudiante"); 
         }
-    } while (ingreso.isEmpty());
-    objTab.setMarca(ingreso);
-    
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese el tamaño de la pantalla (en pulgadas):");
-        try {
-            float tam = Float.parseFloat(ingreso);
-            objTab.setTamaño(tam);
-            break;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Tamaño inválido");
-        }
-<<<<<<< HEAD
+        objTab.setMarca(ingreso);
+        ingreso = JOptionPane.showInputDialog("Ingrese el tamaño de la tableta:");
+            while (!ingreso.matches("\\d+([.,]\\d+)?")) 
+            {
+                JOptionPane.showMessageDialog(null, "Error: Tamaño no valido. Solo permite numero.");
+                ingreso = JOptionPane.showInputDialog("Ingrese el tamaño de la tableta:");
+            }
+        objTab.setTamaño(Double.parseDouble(ingreso));
+        ingreso = JOptionPane.showInputDialog("Ingrese el precio de la tableta:");
+            while (!ingreso.matches("\\d+([.,]\\d+)?")) 
+            {
+                JOptionPane.showMessageDialog(null, "Error: precio no valido. Solo permite numero.");
+                ingreso = JOptionPane.showInputDialog("Ingrese el precio de la tableta:");
+            }
+        objTab.setPrecio(Double.parseDouble(ingreso));
+        ingreso = JOptionPane.showInputDialog("Ingrese el peso de la tableta:");
+            while (!ingreso.matches("\\d+([.,]\\d+)?")) 
+            {
+                JOptionPane.showMessageDialog(null, "Error: peso no valido. Solo permite numero.");
+                ingreso = JOptionPane.showInputDialog("Ingrese el peso de la tableta:");
+            }
         objTab.setPeso(Double.parseDouble(ingreso));
-        objTab.setAlmacenamiento(m.subMenuAlmacenamiento());
-        listaTabletas.add(objTab);
-        JOptionPane.showMessageDialog(null, "Tableta registrada con éxito");
-        m.MostrarTableta(listaTabletas);
-=======
-    } while (true);
-
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese el precio de la tableta:");
-        try {
-            float precio = Float.parseFloat(ingreso);
-            objTab.setPrecio(precio);
-            break;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Precio inválido");
-        }
-    } while (true);
-
-    do {
-        ingreso = JOptionPane.showInputDialog(null, "Ingrese el peso en kg de la tableta:");
-        try {
-            float peso = Float.parseFloat(ingreso);
-            objTab.setPeso(peso);
-            break;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Peso inválido");
-        }
-    } while (true);
-    objTab.setAlmacenamiento(subMenuAlmacenamiento());
-    listaTabletas.add(objTab);
-    JOptionPane.showMessageDialog(null, "Tableta registrada con éxito");
-    MostrarTableta(listaTabletas);
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
+        objTab.setAlmacenamiento(subMenuAlmacenamiento());
+        return ValidarTableta(listaTabletas, objTab);
     }
+    public LinkedList<objTablet> ValidarTableta(LinkedList<objTablet> listTab, objTablet tab) 
+    {
+        boolean encontrado = false;
+        for (objTablet t : listTab) 
+        {
+            if (t.getSerial().equals(tab.getSerial())) 
+            {
+                encontrado = true;
+                JOptionPane.showMessageDialog(null, "La tableta ya existe");
+                break;
+            }
+        }
+        if (!encontrado) 
+        {
+            listTab.add(tab);
+            JOptionPane.showMessageDialog(null, "Tableta ingresado correctamente");
+        }
+        MostrarTableta(listTab);
+        return listTab;
+    }
+
     public  String subMenuAlmacenamiento() 
     {
         String opcion = "";
@@ -532,7 +513,6 @@ public class metodo
         }
         return almacenamiento;
     }
-<<<<<<< HEAD
     public LinkedList<objEst_Diseño> modificarEstDis (LinkedList<objEst_Diseño> lisDis)
     {
          while (lisDis.isEmpty()) 
@@ -634,8 +614,6 @@ public class metodo
         return lisDis;
     }
     
-=======
->>>>>>> d3e38a7cb8e3822912618a73bc2e821670cc4d48
     public String subMenuSisOperativo() 
     {
         String opcion = "";
