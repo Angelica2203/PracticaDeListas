@@ -913,5 +913,44 @@ public class metodo
             System.out.println("-----------------------");
         }
     }
-    
+    public void exportarArchivoPC(LinkedList<objPc> pc)
+    {
+        Exportar compu = new Exportar();
+        compu.exportarArchivoPC(pc);
+    }
+    public LinkedList<objPc> importarArchivoPC(LinkedList<objPc> pc)
+    {
+        Importar compu = new Importar();
+        return compu.leerArchivoPC();
+    }
+    public void exportarArchivoTableta(LinkedList<objTablet> dis)
+    {
+        Exportar tab = new Exportar();
+        tab.exportarArchivoTableta(dis);
+    }
+    public LinkedList<objTablet> importarArchivoTableta(LinkedList<objTablet> dis)
+    {
+        Importar tab = new Importar();
+        return tab.leerArchivoTableta();
+    }
+    public void exportarArchivoIng(LinkedList<objEst_Ingenieria> ing)
+    {
+        Exportar inge = new Exportar();
+        inge.exportarArchivoIng(ing);
+    }
+    public LinkedList<objEst_Ingenieria> importarArchivoIngenierias(LinkedList<objEst_Ingenieria> ing)
+    {
+        Importar inge = new Importar();
+        return inge.leerArchivoIng();
+    }
+    public void exportarArchivoDis(LinkedList<objEst_Diseño> dis)
+    {
+        Exportar dise = new Exportar();
+        dise.exportarArchivoDis(dis);
+    }
+    public LinkedList<objEst_Diseño> importarArchivodDis(LinkedList<objEst_Diseño> dis)
+    {
+        Importar dise = new Importar();
+        return dise.leerArchivoDis();
+    }
 }

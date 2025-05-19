@@ -15,11 +15,19 @@ public class principal
                                                 "3.Imprimir Inventario Total\n" +
                                                 "4.Registrar Computador\n" +
                                                 "5.Registrar Tablet\n" +
-                                                "6.Salir");
+                                                "6.Exportar Computador\n" +
+                                                "7.Importar Computador\n" +
+                                                "8.Exportar Tableta\n" +
+                                                "9.Importar Tableta\n" +
+                                                "10.Exportar Ingenieros\n" +
+                                                "11.Importar Ingenieros\n" +
+                                                "12.Exportar Diseñadores\n" +
+                                                "13.Importar Diseñadores\n" +
+                                                "14.Salir");
             if (input != null && input.matches("\\d+")) 
             {
                 vrUsu = Integer.parseInt(input);
-                if (vrUsu >= 1 && vrUsu <= 6) 
+                if (vrUsu >= 1 && vrUsu <= 14) 
                 {
                     validInput = true;
                 } 
@@ -89,11 +97,91 @@ public class principal
                 case 5:
                      mt.registrarTableta(tablet);
                     break;
+                case 6:
+                    if (compu.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para exportar");
+                    } 
+                    else 
+                    {
+                        mt.exportarArchivoPC(compu);
+                    }
+                    break;
+                case 7:
+                    if (compu.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para importar");
+                    } 
+                    else 
+                    {
+                        mt.importarArchivoPC(compu);
+                    }
+                    break;
+                case 8:
+                    if (tablet.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para exportar");
+                    } 
+                    else 
+                    {
+                        mt.exportarArchivoTableta(tablet);
+                    }
+                    break;
+                case 9:
+                    if (tablet.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para importar");
+                    } 
+                    else 
+                    {
+                        mt.importarArchivoTableta(tablet);
+                    }
+                    break;
+                case 10:
+                    if (ingeneria.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para exportar");
+                    } 
+                    else 
+                    {
+                        mt.exportarArchivoIng(ingeneria);
+                    }
+                    break;
+                case 11:
+                    if (ingeneria.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para importar");
+                    } 
+                    else 
+                    {
+                        mt.importarArchivoIngenierias(ingeneria);
+                    }
+                    break;
+                case 12:
+                    if (diseño.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para exportar");
+                    } 
+                    else 
+                    {
+                        mt.exportarArchivoDis(diseño);
+                    }
+                    break;
+                case 13:
+                    if (diseño.isEmpty()) 
+                    {
+                        JOptionPane.showMessageDialog(null, "No hay registros para importar");
+                    } 
+                    else 
+                    {
+                        mt.importarArchivodDis(diseño);
+                    }
+                    break;
                 default:
                     JOptionPane.showMessageDialog(null, "El programa ha terminado");
                     break;
             }
             
-        } while (opc != 6);
+        } while (opc != 14);
     }
 }
